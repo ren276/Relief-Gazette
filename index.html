@@ -95,6 +95,63 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     }
                     });
              }
+             // The following example creates complex markers to indicate beaches near
+// Sydney, NSW, Australia. Note that the anchor is set to (0,32) to correspond
+// to the base of the flagpole.
+function initMap() {
+  const map = new google.maps.Map(document.getElementById("map"), {
+    zoom: 5,
+    center: { lat: 20.5937, lng: 78.9629 },
+  });
+
+  setMarkers(map);
+}
+
+// Data for the markers consisting of a name, a LatLng and a zIndex for the
+// order in which these markers should display on top of each other.
+const beaches = [
+  ["Bondi Jyotirmayee Medicine Store, Pataka, Athmallik, Odisha, India", 20.650694, 84.631775],
+  ["Khuangpuilam Clinic, Kolasib, Mizoram, India", 24.209656, 92.679642],
+  ["Rural Hospital Solankur, Solankur, Maharashtra, India", 16.413506, 74.050575],
+  
+];
+
+function setMarkers(map) {
+  
+  const image = {
+    url: "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
+    // This marker is 20 pixels wide by 32 pixels high.
+    size: new google.maps.Size(20, 32),
+    // The origin for this image is (0, 0).
+    origin: new google.maps.Point(0, 0),
+    // The anchor for this image is the base of the flagpole at (0, 32).
+    anchor: new google.maps.Point(0, 32),
+  };
+  // Shapes define the clickable region of the icon. The type defines an HTML
+  // <area> element 'poly' which traces out a polygon as a series of X,Y points.
+  // The final coordinate closes the poly by connecting to the first coordinate.
+  const shape = {
+    coords: [1, 1, 1, 20, 18, 20, 18, 1],
+    type: "poly",
+  };
+
+  for (let i = 0; i < beaches.length; i++) {
+    const beach = beaches[i];
+
+    new google.maps.Marker({
+      position: { lat: beach[1], lng: beach[2] },
+      map,
+      icon: image,
+      shape: shape,
+      title: beach[0],
+      zIndex: beach[3],
+    });
+  }
+}
+
+window.initMap = initMap;
+window.initMap = initMap;
+
      
      function createMarker(place) {
                var marker = new google.maps.Marker({
@@ -145,7 +202,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     </button>
 
                     <!-- lOGO TEXT HERE -->
-                    <a href="base.html" class="navbar-brand">Relief<span>.</span>Gazette</a>
+                    <a href="index.html" class="navbar-brand">Relief<span>.</span>Gazette</a>
                </div>
 
                <!-- MENU LINKS -->
@@ -518,20 +575,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
 
                     <div class="holder">
                          <ul id="ticker01">
-                              <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>31/07/2020</span><a href="#" data-toggle="modal" data-target="#news1" >  <br>curl --location 'api.catastrophe.world/natural-disasters/?page=1&per_page=12&statecode=TX&sortby=asc-state&funding=32453534&incident=Flood'</a>
-                                    </div>  <br>
-                               </li>
+                              
                                <li> 
                                    <div class="col-md-4">
                                          <img src="images/earthquakeee.jpg" alt="loading..." class="newsi">  
                                     </div>
                                     <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                         <span>10/01/2021</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Gujarat Earthquake</a>
                                     </div>  <br>
                                </li>
                                <li> 
@@ -539,7 +589,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                          <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
                                     </div>
                                     <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                         <span>01/05/2023</span><a href="https://timesofindia.indiatimes.com/city/vadodara/rain-saves-pavagadhs-dense-forests-from-wildfire/articleshow/99899164.cms " data-toggle="modal" data-target="#news1" >  <br> wildfires in vadodara</a>
                                     </div>  <br>
                                </li>
                                <li> 
@@ -547,7 +597,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                          <img src="images/flooood.jpg" alt="loading..." class="newsi">  
                                     </div>
                                     <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                         <span>06/05/2023</span><a href="https://www.livemint.com/news/india/cyclone-mocha-in-odisha-bay-of-bengal-to-hit-india-today-imd-issues-advisory-for-fishermen-latest-updates-11683337711461.html " data-toggle="modal" data-target="#news1" >  <br> Cyclone Mocha in odisha hits tomorrow</a>
                                     </div>  <br>
                                </li>
                                <li> 
@@ -555,7 +605,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                          <img src="images/pandemic.jpg" alt="loading..." class="newsi">  
                                     </div>
                                     <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                         <span>10/10/2021</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
                                     </div>  <br>
                                </li>
                                <li> 
@@ -563,53 +613,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                          <img src="images/riots.jpg" alt="loading..." class="newsi">  
                                     </div>
                                     <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                         <span>10/10/2023</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> riots break down near PM House</a>
                                     </div>  <br>
                                </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
-                               <li> 
-                                   <div class="col-md-4">
-                                         <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                    </div>
-                                    <div class="col-md-8">
-                                         <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                    </div>  <br>
-                               </li>
+                               
 
                                                           
 
-                                                             <li> 
-                                                                 <div class="col-md-4">
-                                                                       <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
-                                                                  </div>
-                                                                  <div class="col-md-8">
-                                                                       <span>10/10/2007</span><a href="#">  <br> Corona virus invading the land of dawn.</a>
-                                                                  </div> <br>
-                                                             </li>
-                              </ul>
                        </div>
 
                </div>
@@ -628,7 +638,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                                              <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
                                                         </div>
                                                         <div class="col-md-8">
-                                                             <span>31/07/2020</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                                             <span>31/07/2022</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Wildfires break out in Uttarakhand yet again.</a>
                                                         </div>  <br>
                                                    </li>
                                                    <li> 
@@ -636,7 +646,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                                              <img src="images/earthquakeee.jpg" alt="loading..." class="newsi">  
                                                         </div>
                                                         <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                                             <span>10/10/2023</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Earthquake shakes in Himalayan Region</a>
                                                         </div>  <br>
                                                    </li>
                                                    <li> 
@@ -644,7 +654,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                                              <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
                                                         </div>
                                                         <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                                             <span>10/10/2021</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Forest catches fire: Jharkhand
                                                         </div>  <br>
                                                    </li>
                                                    <li> 
@@ -652,7 +662,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                                              <img src="images/flooood.jpg" alt="loading..." class="newsi">  
                                                         </div>
                                                         <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                                             <span>10/10/2019</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Water level rises in Hindon River: ALERT !</a>
                                                         </div>  <br>
                                                    </li>
                                                    <li> 
@@ -660,34 +670,10 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                                              <img src="images/pandemic.jpg" alt="loading..." class="newsi">  
                                                         </div>
                                                         <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
+                                                             <span>10/10/2019</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona again breakouts with yet another version </a>
                                                         </div>  <br>
                                                    </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/riots.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-                                                   <li> 
-                                                       <div class="col-md-4">
-                                                             <img src="images/wildfire.jpg" alt="loading..." class="newsi">  
-                                                        </div>
-                                                        <div class="col-md-8">
-                                                             <span>10/10/2007</span><a href="#" data-toggle="modal" data-target="#news1" >  <br> Corona virus invading the land of dawn.</a>
-                                                        </div>  <br>
-                                                   </li>
-
-                                                    <li> 
-                                                        <div class="col-md-4">
-                                                              <img src="images/wildfires.jpg" alt="loading..." class="newsi">  
-                                                         </div>
-                                                         <div class="col-md-8">
-                                                              <span>10/10/2007</span><a href="#">  <br> Corona virus invading the land of dawn.</a>
-                                                         </div> <br>
-                                                    </li>
+                                                   
                                    </ul>
                                            </div>
                     
@@ -833,13 +819,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="./pages/wildfires.html" target="_blank" title="Wildfire">
+                              <a href="wildfires.html" target="_blank" title="Wildfire">
                                    <img src="images/wildfires.jpg"  class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                              <h3>Wildfire</h3>
-                                             <p > <a href="./pages/wildfires.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                             <p > <a href="wildfires.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                         
@@ -851,13 +837,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="./pages/floods.html"  target="_blank"  title="Flood">
+                              <a href="floods.html"  target="_blank"  title="Flood">
                                    <img src="images/flooood.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                               <h3>Flood</h3>
-                                              <p > <a href="./pages/floods.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                              <p > <a href="floods.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
                                              </div>
                                        
                                    </div>
@@ -868,13 +854,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="./pages/violence.html"  target="_blank"  title="Violence">
+                              <a href="violence.html"  target="_blank"  title="Violence">
                                    <img src="images/riots.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                            <h3>Violence</h3>
-                                           <p > <a href="./pages/violence.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                           <p > <a href="violence.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
 
                                         </div>
@@ -887,13 +873,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="./pages/earthquake.html"  target="_blank" title="Earthquake">
+                              <a href="/earthquake.html"  target="_blank" title="Earthquake">
                                    <img src="images/earthquakeee.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                              <h3>Earthquake</h3>
-                                             <p > <a href="./pages/earthquake.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                             <p > <a href="earthquake.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                        
@@ -905,13 +891,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="./pages/storms.html" target="_blank" title="Tornado">
+                              <a href="storms.html" target="_blank" title="Tornado">
                                    <img src="images/tornado.jpg" class="img-responsive" alt="">
 
                                   <div class="menu-info">
                                         <div class="menu-item">
                                             <h3>Tornado</h3>
-                                            <p > <a href="./pages/storms.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                            <p > <a href="storms.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                        
@@ -923,13 +909,13 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-4 col-sm-6">
                          <!-- MENU THUMB -->
                          <div class="menu-thumb">
-                              <a href="./pages/pandemic.html" target="_blank"  title="Pandemic">
+                              <a href="pandemic.html" target="_blank"  title="Pandemic">
                                    <img src="images/pandemic.jpg" class="img-responsive" alt="">
 
                                    <div class="menu-info">
                                         <div class="menu-item">
                                            <h3>Pandemic</h3>
-                                           <p > <a href="./pages/pandemic.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
+                                           <p > <a href="pandemic.html" target="_blank" style="color: aliceblue;">Click for Precautions. </a></p>
 
                                         </div>
                                        
@@ -961,7 +947,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                                    <h2 class="wow fadeInUp" data-wow-delay="0.2s">Find us</h2>
                               </div>
                               <address class="wow fadeInUp" data-wow-delay="0.4s">
-                                   <p>123 nulla a cursus rhoncus,<br> augue sem viverra 10870<br>id ultricies sapien</p>
+                                   <p>JIMS Greater Noida</p>
                               </address>
                          </div>
                     </div>
@@ -969,11 +955,11 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-3 col-sm-8" id="contact">
                          <div class="footer-info">
                               <div class="section-title">
-                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Contact</h2>
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Contact Us</h2>
                               </div>
                               <address class="wow fadeInUp" data-wow-delay="0.4s">
-                                   <p>090-080-0650 | 090-070-0430</p>
-                                   <p><a href="mailto:info@company.com">sem.alpha.sih2020@gmail.com</a></p>
+                                   <p>1234567890</p>
+                                   <p><a href="mailto:reliefgazette@company.com">reliefgazette@gmail.com</a></p>
                               </address>
                          </div>
                     </div>
@@ -981,18 +967,11 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                     <div class="col-md-4 col-sm-8">
                          <div class="footer-info footer-open-hour">
                               <div class="section-title">
-                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Office</h2>
+                                   <h2 class="wow fadeInUp" data-wow-delay="0.2s">Our Place</h2>
                               </div>
                               <div class="wow fadeInUp" data-wow-delay="0.4s">
-                                   <p>Monday: Closed</p>
-                                   <div>
-                                        <strong>Tuesday to Friday</strong>
-                                        <p>7:00 AM - 9:00 PM</p>
-                                   </div>
-                                   <div>
-                                        <strong>Saturday - Sunday</strong>
-                                        <p>11:00 AM - 10:00 PM</p>
-                                   </div>
+                                   <p>Delhi</p>
+                                   
                               </div>
                          </div>
                     </div>
@@ -1006,7 +985,7 @@ src="https://maps.googleapis.com/maps/api/js?key=AIzaSyClTFCqblsPcEBMZPENES28ztN
                          </ul>
 
                          <div class="wow fadeInUp copyright-text" data-wow-delay="0.8s"> 
-                              <p><br>Copyright &copy; 2020 <br> SEM_ALPHA
+                              <p><br>Copyright &copy; 2023 <br> Relief Gazette
                               
                              
                          </div>
